@@ -20,8 +20,9 @@ Currently, the following Auth0 features and flows support the use of custom doma
 * OAuth 2.0/OIDC-Compliant Flows (those using the [`/authorize`](/api/authentication#authorize-client) and [`/oauth/token`](https://auth0.com/docs/api/authentication#get-token) endpoints)
 * Guardian (Version 1.3.3 or later)
 * Emails (the links included in the emails will use your custom domain)
-* Database and Social connections
+* Database and Social Connections
 * Lock 11 with Cross Origin Authentication
+* SAML Connections and Clients
 
 :::warning
 Features not in the list are **not supported** by Auth0 with custom domains.
@@ -163,6 +164,17 @@ If you want to use social identity providers with your custom domain, you must u
 :::warning
 You cannot use [Auth0 developer keys](/connections/social/devkeys) with custom domains.
 :::
+
+#### SAML identity provider configuration
+
+If you want to use SAML identity providers with your custom domain, you must obtain the SP Metadata from Auth0 (e.g. `https://login.northwind.com/samlp/metadata?connection=CONNECTION_NAME`). This includes updated AssertionConsumer
+Urls. You can also manually update these values in your IDP.
+
+As an alternative, if your IDP accepts the AssertionConsumerUrl in the signed AuthnRequest, then no IDP update will be necessary. You must enable Signed Requests in your connection.
+
+#### SAML client configuration
+
+If you want to use SAML clients with your custom domain, you should update your SP with new IDP metadata from Auth0 (e.g. `https://login.northwind.com/samlp/metadata/CLIENT_ID`). Note that the issuer entity ID will change when using a custom domain.
 
 #### APIs
 
